@@ -1,0 +1,59 @@
+# To run the POS tagger HMM code, open the HMM.ipynb file using jupyter notebook
+
+Tools Required:
+==============================================================================================
+numpy: 1.23.1
+nltk: 3.7
+scikit-learn: 1.1.1
+matplotlib: 3.5.1
+
+Implementation Details:
+===============================================================================================
+Preprocessing
+
+- Added start_token("^") and end_token("$") to each sentence.
+- converted each word to lower case for ease of usage while training and processing.
+
+
+Traning
+	- input : list of sentences ( i.e. (word,tag) )
+      - output : Three required dictionary which used in calculation of lexical and transition probabilty
+
+transition_probability
+	- input : tag1 , tag2 , per tag count dictionary, tag_i to tag_j count dictionary
+	- output : transition probabilty from tag1 to tag2
+	
+	extra points :
+	====================================
+	- if tag1 or tag2 is not present in dataset then we return 10^(-9) as transition probabilty that help while calculating log of probability in viterbi algorithm.
+	====================================
+
+lexical_probability
+	- input : word, tag , per tag count dictionary, per word tag_i count dictionary
+	- output : p(word | tag)
+
+	extra points :
+	====================================
+	- we handled unknown words with laplace smoothing with lambda as -1 .
+	
+	formula for laplace smoothing :
+	```
+	P( word | tag ) = ( word_count + 1 ) / ( tag_count + len( word_tag_j_count ) )
+      ```
+	====================================
+
+classification_report_function
+	- input : y_true, y_predicted 
+			-> here y_true is list of all true_values for each fold ( i.e y_true = [ y_true_fold1, y_true_fold2, .... ] )
+			-> here y_predicted is list of all predicted_values for each fold ( i.e y_predicted = [ y_predicted_fold1, y_predicted_fold2, .... ] )
+	- output : generates ```classification_report.png```
+
+
+confusion_matrix_function
+	- input : y_true, y_predicted 
+			-> here y_true is list of all true_values for each fold ( i.e y_true = [ y_true_fold1, y_true_fold2, .... ] )
+			-> here y_predicted is list of all predicted_values for each fold ( i.e y_predicted = [ y_predicted_fold1, y_predicted_fold2, .... ] )
+	- output : generates confusion matrix
+
+To generate POS tag for a sentence, just input the sentence in for_checking variable present in last cell and run this cell and 
+the cell containing the function sentence_checking which will return the POS tags in list format.
