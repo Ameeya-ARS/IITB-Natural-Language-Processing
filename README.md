@@ -1,6 +1,6 @@
 # CS 626 NLP (Autumn 2022) - IIT Bombay
 
-This repository contains all my submissions to the labs done during my study of the CS 626 - **Natural Language Processing** course during Autumn 2022(5th semester) at Indian Institute of Technology Bombay, India.
+This repository contains all my submissions to the assignments done during my study of the CS 626 - **Natural Language Processing** course during Autumn 2022(5th semester) at Indian Institute of Technology Bombay, India.
 
 ## Author
 
